@@ -1,7 +1,89 @@
+import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { PokemonCardType } from "@/types";
+import { PokemonCard } from "@/components/PokemonCard";
+import { getPokemonCards } from "@/services/getPokemonCards";
+
+const pageSize = 20;
+
 export const Home = () => {
+  const [cards, setCards] = useState<PokemonCardType[]>([]);
+  const [loading, setLoading] = useState<boolean>(true);
+  const [currentPage, setCurrentPage] = useState<number>(1);
+  const [totalPages, setTotalPages] = useState<number>(1);
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    const fetchPokemonCards = async () => {
+      try {
+        const { data, totalCount } = await getPokemonCards({
+          currentPage,
+          pageSize,
+        });
+        setCards(data);
+        const calculatedTotalPages = Math.ceil(totalCount / pageSize);
+        setTotalPages(calculatedTotalPages);
+        console.log(totalPages);
+        setLoading(false);
+      } catch (error) {
+        console.error("Error fetching data", error);
+        setLoading(false);
+      }
+    };
+
+    fetchPokemonCards();
+  }, [currentPage, totalPages]);
+
+  const handleCardClick = (id: string) => {
+    navigate(`/details/${id}`);
+  };
+
+  const handlePrevPage = () => {
+    if (currentPage > 1) setCurrentPage(currentPage - 1);
+  };
+
+  const handleNextPage = () => {
+    if (currentPage < totalPages) setCurrentPage(currentPage + 1);
+  };
+
   return (
-    <div>
-      <h1>Home</h1>
+    <div className="container mx-auto px-4 py-6">
+      <h1 className="text-3xl font-bold mb-6 text-center">Pokémon Cards</h1>
+      {loading ? (
+        <div className="text-center">Loading...</div>
+      ) : (
+        <div>
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+            {cards.map((card) => (
+              <PokemonCard
+                key={card.id}
+                pokemon={card}
+                handleCardClick={handleCardClick}
+              />
+            ))}
+          </div>
+
+          <div className="flex justify-between items-center mt-6">
+            <button
+              onClick={handlePrevPage}
+              disabled={currentPage === 1}
+              className="px-4 py-2 bg-blue-500 text-white rounded disabled:bg-gray-300"
+            >
+              Previous
+            </button>
+            <span>
+              Page {currentPage} of {totalPages}
+            </span>
+            <button
+              onClick={handleNextPage}
+              disabled={currentPage === totalPages}
+              className="px-4 py-2 bg-blue-500 text-white rounded disabled:bg-gray-300"
+            >
+              Next
+            </button>
+          </div>
+        </div>
+      )}
     </div>
   );
 };
