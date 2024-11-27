@@ -1,13 +1,11 @@
-import { Routes, Route } from "react-router-dom";
-import { Home } from "@/pages/Home";
+import { Router } from "@/Routes";
+import AppProvider from "@/context";
 
 function App() {
   return (
-    <div>
-      <Routes>
-        <Route path="/" element={<Home />} />
-      </Routes>
-    </div>
+    <AppProvider>
+      <Router />
+    </AppProvider>
   );
 }
 
