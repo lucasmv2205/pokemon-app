@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { PokemonCardType } from "@/types";
+import { PokemonType } from "@/types";
 import { PokemonCard } from "@/components/PokemonCard";
 import { getPokemonCards } from "@/services/getPokemonCards";
 import { usePokemon } from "@/hooks/usePokemon";
@@ -31,7 +31,6 @@ export const Home = () => {
         setPokemons(data);
         const calculatedTotalPages = Math.ceil(totalCount / pageSize);
         setTotalPages(calculatedTotalPages);
-        console.log(totalPages);
         setLoading(false);
       } catch (error) {
         console.error("Error fetching data", error);
@@ -49,7 +48,7 @@ export const Home = () => {
     totalPages,
   ]);
 
-  const handleCardClick = (pokemon: PokemonCardType) => {
+  const handleCardClick = (pokemon: PokemonType) => {
     selectPokemon(pokemon);
     navigate(`/pokemon/${pokemon.id}`);
   };
@@ -70,7 +69,7 @@ export const Home = () => {
       ) : (
         <div>
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-            {pokemons?.map((card: PokemonCardType) => (
+            {pokemons?.map((card: PokemonType) => (
               <PokemonCard
                 key={card.id}
                 pokemon={card}

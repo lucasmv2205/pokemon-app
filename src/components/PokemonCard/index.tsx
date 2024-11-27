@@ -1,8 +1,8 @@
-import { PokemonCardType } from "@/types";
+import { PokemonType } from "@/types";
 
 interface PokemonCardProps {
-  pokemon: PokemonCardType;
-  handleCardClick: (pokemon: PokemonCardType) => void;
+  pokemon: PokemonType;
+  handleCardClick: (pokemon: PokemonType) => void;
 }
 
 export const PokemonCard = ({ pokemon, handleCardClick }: PokemonCardProps) => {
