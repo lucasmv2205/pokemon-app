@@ -44,7 +44,7 @@ const PokemonProvider = ({ children }: PokemonProviderProps) => {
   const pageSize = 20;
 
   const selectPokemon = (pokemon: PokemonType) => {
-    setSelectedPokemon(pokemon || null);
+    setSelectedPokemon(pokemon);
   };
 
   return (

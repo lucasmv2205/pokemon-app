@@ -1,15 +1,31 @@
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { usePokemon } from "@/hooks/usePokemon";
+import { getPokemonById } from "@/services/getPokemonById";
 
 export const Details = () => {
   const navigate = useNavigate();
-  const { selectedPokemon } = usePokemon();
+  const { id } = useParams();
+  const { selectedPokemon, selectPokemon } = usePokemon();
 
   const handleBackClick = () => {
     navigate(-1);
   };
 
+  const getPokemon = async () => {
+    try {
+      if (id) {
+        const { data } = await getPokemonById(id);
+        selectPokemon(data);
+      } else {
+        console.error("No ID provided");
+      }
+    } catch (error) {
+      console.error("Error fetching data", error);
+    }
+  };
+
   if (!selectedPokemon) {
+    getPokemon();
     return (
       <div className="text-center">Any details found for this Pokémon.</div>
     );
