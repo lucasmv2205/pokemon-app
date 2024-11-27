@@ -1,9 +1,10 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { PokemonType } from "@/types";
 import { PokemonCard } from "@/components/PokemonCard";
 import { getPokemonCards } from "@/services/getPokemonCards";
 import { usePokemon } from "@/hooks/usePokemon";
+import { SearchInput } from "@/components/SearchInput";
 
 export const Home = () => {
   const {
@@ -18,6 +19,7 @@ export const Home = () => {
     setLoading,
     pageSize,
   } = usePokemon();
+  const [searchParam, setSearchParam] = useState<string>("");
 
   const navigate = useNavigate();
 
@@ -27,6 +29,8 @@ export const Home = () => {
         const { data, totalCount } = await getPokemonCards({
           currentPage,
           pageSize,
+          orderBy: "name",
+          names: searchParam,
         });
         setPokemons(data);
         const calculatedTotalPages = Math.ceil(totalCount / pageSize);
@@ -46,6 +50,7 @@ export const Home = () => {
     setPokemons,
     setTotalPages,
     totalPages,
+    searchParam,
   ]);
 
   const handleCardClick = (pokemon: PokemonType) => {
@@ -63,6 +68,9 @@ export const Home = () => {
 
   return (
     <div className="container mx-auto px-4 py-6">
+      <div className="mb-6">
+        <SearchInput onSearch={setSearchParam} />
+      </div>
       <h1 className="text-3xl font-bold mb-6 text-center">Pokémon Cards</h1>
       {loading ? (
         <div className="text-center">Loading...</div>

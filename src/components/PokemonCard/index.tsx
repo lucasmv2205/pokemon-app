@@ -23,14 +23,16 @@ export const PokemonCard = ({ pokemon, handleCardClick }: PokemonCardProps) => {
         <h2 className="text-xl font-semibold">{name}</h2>
         <p className="text-sm text-gray-600">ID: {id}</p>
         <div className="flex gap-2">
-          {types.map((type) => (
-            <span
-              key={type}
-              className="text-xs bg-gray-200 px-2 py-1 rounded-full"
-            >
-              {type}
-            </span>
-          ))}
+          {types &&
+            types.length > 0 &&
+            types.map((type) => (
+              <span
+                key={type}
+                className="text-xs bg-gray-200 px-2 py-1 rounded-full"
+              >
+                {type}
+              </span>
+            ))}
         </div>
       </div>
     </div>

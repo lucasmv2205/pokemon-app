@@ -83,16 +83,18 @@ export const Details = () => {
                 </ul>
               </div>
             )}
-          <div className="mt-4">
-            <h3 className="text-lg font-semibold">Attacks:</h3>
-            <ul className="list-disc pl-5">
-              {selectedPokemon.attacks?.map((attack, index) => (
-                <li key={index}>
-                  <strong>{attack.name}</strong> - {attack.damage} of damage
-                </li>
-              ))}
-            </ul>
-          </div>
+          {selectedPokemon.attacks && selectedPokemon.attacks.length > 0 && (
+            <div className="mt-4">
+              <h3 className="text-lg font-semibold">Attacks:</h3>
+              <ul className="list-disc pl-5">
+                {selectedPokemon.attacks?.map((attack, index) => (
+                  <li key={index}>
+                    <strong>{attack.name}</strong> - {attack.damage} of damage
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )}
         </div>
       </div>
     </div>
