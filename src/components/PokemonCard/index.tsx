@@ -2,7 +2,7 @@ import { PokemonCardType } from "@/types";
 
 interface PokemonCardProps {
   pokemon: PokemonCardType;
-  handleCardClick: (id: string) => void;
+  handleCardClick: (pokemon: PokemonCardType) => void;
 }
 
 export const PokemonCard = ({ pokemon, handleCardClick }: PokemonCardProps) => {
@@ -12,7 +12,7 @@ export const PokemonCard = ({ pokemon, handleCardClick }: PokemonCardProps) => {
     <div
       key={id}
       className="card bg-white shadow-md rounded-lg overflow-hidden cursor-pointer"
-      onClick={() => handleCardClick(id)}
+      onClick={() => handleCardClick(pokemon)}
     >
       <img
         src={images.small}

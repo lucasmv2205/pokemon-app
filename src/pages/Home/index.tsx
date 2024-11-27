@@ -1,16 +1,24 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { PokemonCardType } from "@/types";
 import { PokemonCard } from "@/components/PokemonCard";
 import { getPokemonCards } from "@/services/getPokemonCards";
-
-const pageSize = 20;
+import { usePokemon } from "@/hooks/usePokemon";
 
 export const Home = () => {
-  const [cards, setCards] = useState<PokemonCardType[]>([]);
-  const [loading, setLoading] = useState<boolean>(true);
-  const [currentPage, setCurrentPage] = useState<number>(1);
-  const [totalPages, setTotalPages] = useState<number>(1);
+  const {
+    pokemons,
+    setPokemons,
+    selectPokemon,
+    currentPage,
+    setCurrentPage,
+    totalPages,
+    setTotalPages,
+    loading,
+    setLoading,
+    pageSize,
+  } = usePokemon();
+
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -20,7 +28,7 @@ export const Home = () => {
           currentPage,
           pageSize,
         });
-        setCards(data);
+        setPokemons(data);
         const calculatedTotalPages = Math.ceil(totalCount / pageSize);
         setTotalPages(calculatedTotalPages);
         console.log(totalPages);
@@ -32,10 +40,18 @@ export const Home = () => {
     };
 
     fetchPokemonCards();
-  }, [currentPage, totalPages]);
+  }, [
+    currentPage,
+    pageSize,
+    setLoading,
+    setPokemons,
+    setTotalPages,
+    totalPages,
+  ]);
 
-  const handleCardClick = (id: string) => {
-    navigate(`/details/${id}`);
+  const handleCardClick = (pokemon: PokemonCardType) => {
+    selectPokemon(pokemon);
+    navigate(`/pokemon/${pokemon.id}`);
   };
 
   const handlePrevPage = () => {
@@ -54,7 +70,7 @@ export const Home = () => {
       ) : (
         <div>
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-            {cards.map((card) => (
+            {pokemons?.map((card: PokemonCardType) => (
               <PokemonCard
                 key={card.id}
                 pokemon={card}

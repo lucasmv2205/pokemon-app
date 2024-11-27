@@ -50,6 +50,6 @@ describe("PokemonCard", () => {
     if (card) fireEvent.click(card);
 
     expect(mockHandleCardClick).toHaveBeenCalledTimes(1);
-    expect(mockHandleCardClick).toHaveBeenCalledWith(mockPokemon.id);
+    expect(mockHandleCardClick).toHaveBeenCalledWith(mockPokemon);
   });
 });
