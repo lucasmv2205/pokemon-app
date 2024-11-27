@@ -1,9 +1,9 @@
 import { render, screen, fireEvent } from "@testing-library/react";
 import { PokemonCard } from "@/components/PokemonCard";
-import { PokemonCardType } from "@/types";
+import { PokemonType } from "@/types";
 
 describe("PokemonCard", () => {
-  const mockPokemon: PokemonCardType = {
+  const mockPokemon: PokemonType = {
     id: "xy7-54",
     name: "Pikachu",
     types: ["Electric"],
@@ -11,6 +11,12 @@ describe("PokemonCard", () => {
       small: "https://images.pokemontcg.io/xy7/54.png",
       large: "https://images.pokemontcg.io/xy7/54_hq.png",
     },
+    attacks: [
+      {
+        name: "Thunderbolt",
+        damage: "40",
+      },
+    ],
   };
 
   const mockHandleCardClick = jest.fn();
