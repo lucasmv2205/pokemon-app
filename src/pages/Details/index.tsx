@@ -1,15 +1,14 @@
 import { useNavigate, useParams } from "react-router-dom";
 import { usePokemon } from "@/hooks/usePokemon";
-import { getPokemonById } from "@/services/getPokemonById";
 import { useState } from "react";
 import { AttackType } from "@/types";
 import { ModalAttack } from "@/components/ModalAttack";
 import AttacksList from "@/components/AttacksList";
 
 export const Details = () => {
-  const navigate = useNavigate();
   const { id } = useParams();
-  const { selectedPokemon, selectPokemon } = usePokemon();
+  const navigate = useNavigate();
+  const { selectedPokemon } = usePokemon();
   const [selectedAttack, setSelectedAttack] = useState<AttackType | null>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
 
@@ -27,25 +26,28 @@ export const Details = () => {
     navigate(-1);
   };
 
-  const getPokemon = async () => {
-    try {
-      if (id) {
-        const { data } = await getPokemonById(id);
-        selectPokemon(data);
-      } else {
-        console.error("No ID provided");
-      }
-    } catch (error) {
-      console.error("Error fetching data", error);
-    }
+  const handleGoPokemonsPage = () => {
+    navigate("/pokemons");
   };
 
   if (!selectedPokemon) {
-    getPokemon().catch(() => {
-      return (
-        <div className="text-center">Any details found for this Pokémon.</div>
-      );
-    });
+    <div className="text-center">
+      <span>Any details found for this Pokémon.</span>
+      <button onClick={handleBackClick} className="mb-4 text-blue-500">
+        Back
+      </button>
+    </div>;
+  }
+
+  if (selectedPokemon && selectedPokemon.id !== id) {
+    return (
+      <div className="text-center">
+        <p>Any details found for this Pokémon.</p>
+        <button onClick={handleGoPokemonsPage} className="mb-4 text-blue-500">
+          Back to previous page
+        </button>
+      </div>
+    );
   }
 
   if (selectedPokemon) {
