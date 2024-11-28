@@ -13,6 +13,7 @@ export const PokemonCard = ({ pokemon, handleCardClick }: PokemonCardProps) => {
       key={id}
       className="card bg-slate-100 shadow-md rounded-lg overflow-hidden cursor-pointer hover:shadow-lg transition-shadow hover:-translate-y-1"
       onClick={() => handleCardClick(pokemon)}
+      data-cy="pokemon-card"
     >
       <img
         src={images.small}

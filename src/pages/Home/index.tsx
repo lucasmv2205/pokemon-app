@@ -26,6 +26,7 @@ export const Home = () => {
   useEffect(() => {
     const fetchPokemonCards = async () => {
       try {
+        setLoading(true);
         const { data, totalCount } = await getPokemonCards({
           currentPage,
           pageSize,

@@ -71,6 +71,7 @@ export const Details = () => {
               {selectedPokemon.types?.map((type) => (
                 <span
                   key={type}
+                  data-cy="pokemon-type"
                   className="text-xs bg-gray-200 px-2 py-1 rounded-full"
                 >
                   {type}

@@ -22,6 +22,7 @@ export const SearchInput = ({ onSearch }: SearchInputProps) => {
 
   return (
     <input
+      data-cy="search-input"
       type="text"
       placeholder="Search by name..."
       value={searchParam}

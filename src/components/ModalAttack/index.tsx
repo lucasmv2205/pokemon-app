@@ -17,6 +17,7 @@ export const ModalAttack = ({ attack, handleCloseModal }: ModalAttackProps) => {
           onClick={handleCloseModal}
           className="absolute top-2 right-2 text-gray-500 hover:text-gray-700"
           aria-label="Close modal"
+          data-cy="close-modal"
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -34,7 +35,9 @@ export const ModalAttack = ({ attack, handleCloseModal }: ModalAttackProps) => {
           </svg>
         </button>
 
-        <h2 className="text-2xl font-bold mb-4">{attack.name}</h2>
+        <h2 className="text-2xl font-bold mb-4" data-cy="attack-name">
+          {attack.name}
+        </h2>
         <p className="mb-2">
           <strong>Damage:</strong> {attack.damage || "N/A"}
         </p>

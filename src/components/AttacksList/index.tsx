@@ -14,6 +14,7 @@ const AttacksList = ({ attacks, handleAttackClick }: AttacksListProps) => {
           <li
             key={index}
             className="cursor-pointer hover:underline"
+            data-cy="attack-item"
             onClick={() => handleAttackClick(attack)}
           >
             <strong>{attack.name}</strong> - {attack.damage} of damage
