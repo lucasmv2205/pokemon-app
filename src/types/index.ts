@@ -1,3 +1,11 @@
+export type AttackType = {
+  name: string;
+  cost: string[];
+  convertedEnergyCost: number;
+  damage: string;
+  text: string;
+};
+
 export type PokemonType = {
   id: string;
   name: string;
@@ -8,6 +16,5 @@ export type PokemonType = {
   };
   resistances?: { type: string; value: string }[];
   weaknesses?: { type: string; value: string }[];
-  attacks: { name: string; damage: string }[];
+  attacks: AttackType[];
 }
-

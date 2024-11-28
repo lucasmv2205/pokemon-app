@@ -11,18 +11,18 @@ export const PokemonCard = ({ pokemon, handleCardClick }: PokemonCardProps) => {
   return (
     <div
       key={id}
-      className="card bg-white shadow-md rounded-lg overflow-hidden cursor-pointer"
+      className="card bg-slate-100 shadow-md rounded-lg overflow-hidden cursor-pointer hover:shadow-lg transition-shadow hover:-translate-y-1"
       onClick={() => handleCardClick(pokemon)}
     >
       <img
         src={images.small}
         alt={name}
-        className="w-full h-48 object-contain"
+        className="w-full h-48 object-contain mt-4"
       />
       <div className="p-4">
         <h2 className="text-xl font-semibold">{name}</h2>
         <p className="text-sm text-gray-600">ID: {id}</p>
-        <div className="flex gap-2">
+        <div className="flex gap-2 mt-2">
           {types &&
             types.length > 0 &&
             types.map((type) => (

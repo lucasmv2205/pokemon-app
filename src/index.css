@@ -1,3 +1,13 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer components {
+  .effect_label {
+    @apply text-2xl font-semibold;
+  }
+
+  .effect_list {
+    @apply list-disc ml-5;
+  }
+}
