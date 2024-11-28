@@ -13,8 +13,11 @@ describe("PokemonCard", () => {
     },
     attacks: [
       {
-        name: "Thunderbolt",
-        damage: "40",
+        name: "Flamethrower",
+        cost: ["Fire", "Colorless"],
+        convertedEnergyCost: 3,
+        damage: "90",
+        text: "A powerful fire attack that burns the enemy.",
       },
     ],
   };
