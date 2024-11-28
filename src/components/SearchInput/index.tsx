@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { useTranslation } from "react-i18next";
 
 interface SearchInputProps {
   onSearch: (query: string) => void;
@@ -7,6 +8,7 @@ interface SearchInputProps {
 export const SearchInput = ({ onSearch }: SearchInputProps) => {
   const [searchParam, setSearchParam] = useState<string>("");
   const [debouncedSearch, setDebouncedSearch] = useState<string>(searchParam);
+  const { t } = useTranslation();
 
   useEffect(() => {
     const handler = setTimeout(() => {
@@ -24,7 +26,7 @@ export const SearchInput = ({ onSearch }: SearchInputProps) => {
     <input
       data-cy="search-input"
       type="text"
-      placeholder="Search by name..."
+      placeholder={t("search_by_name")}
       value={searchParam}
       onChange={(e) => setSearchParam(e.target.value)}
       className="w-full p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"

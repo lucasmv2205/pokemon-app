@@ -1,4 +1,5 @@
 import { AttackType } from "@/types";
+import { useTranslation } from "react-i18next";
 
 interface ModalAttackProps {
   attack: AttackType;
@@ -6,6 +7,7 @@ interface ModalAttackProps {
 }
 
 export const ModalAttack = ({ attack, handleCloseModal }: ModalAttackProps) => {
+  const { t } = useTranslation();
   return (
     <div
       className="fixed inset-0 bg-gray-800 bg-opacity-75 flex items-center justify-center z-50"
@@ -39,18 +41,19 @@ export const ModalAttack = ({ attack, handleCloseModal }: ModalAttackProps) => {
           {attack.name}
         </h2>
         <p className="mb-2">
-          <strong>Damage:</strong> {attack.damage || "N/A"}
+          <strong>{t("pokemon.damage")}:</strong> {attack.damage || "N/A"}
         </p>
         <p className="mb-2">
-          <strong>Cost:</strong> {attack.cost ? attack.cost.join(", ") : "N/A"}
+          <strong>{t("pokemon.cost")}:</strong>{" "}
+          {attack.cost ? attack.cost.join(", ") : "N/A"}
         </p>
         <p className="mb-2">
-          <strong>Converted Energy Cost:</strong>{" "}
+          <strong>{t("pokemon.converted_energy_cost")}:</strong>{" "}
           {attack.convertedEnergyCost || "N/A"}
         </p>
         <p>
-          <strong>Description:</strong>{" "}
-          {attack.text || "No description available."}
+          <strong>{t("description")}:</strong>{" "}
+          {attack.text || t("no_description")}
         </p>
       </div>
     </div>

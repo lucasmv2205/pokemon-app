@@ -1,4 +1,5 @@
 import { AttackType } from "@/types";
+import { useTranslation } from "react-i18next";
 
 interface AttacksListProps {
   attacks: AttackType[];
@@ -6,9 +7,10 @@ interface AttacksListProps {
 }
 
 const AttacksList = ({ attacks, handleAttackClick }: AttacksListProps) => {
+  const { t } = useTranslation();
   return (
     <div className="mt-4">
-      <h3 className="text-lg font-semibold">Attacks:</h3>
+      <h3 className="text-lg font-semibold">{t("pokemon.attacks")}:</h3>
       <ul className="list-disc pl-5">
         {attacks.map((attack, index) => (
           <li
@@ -17,7 +19,8 @@ const AttacksList = ({ attacks, handleAttackClick }: AttacksListProps) => {
             data-cy="attack-item"
             onClick={() => handleAttackClick(attack)}
           >
-            <strong>{attack.name}</strong> - {attack.damage} of damage
+            <strong>{attack.name}</strong> - {attack.damage} {t("of")}{" "}
+            {t("pokemon.damage")}
           </li>
         ))}
       </ul>

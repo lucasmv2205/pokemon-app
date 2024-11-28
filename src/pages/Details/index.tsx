@@ -4,9 +4,11 @@ import { useState } from "react";
 import { AttackType } from "@/types";
 import { ModalAttack } from "@/components/ModalAttack";
 import AttacksList from "@/components/AttacksList";
+import { useTranslation } from "react-i18next";
 
 export const Details = () => {
   const { id } = useParams();
+  const { t } = useTranslation();
   const navigate = useNavigate();
   const { selectedPokemon } = usePokemon();
   const [selectedAttack, setSelectedAttack] = useState<AttackType | null>(null);
@@ -32,9 +34,9 @@ export const Details = () => {
 
   if (!selectedPokemon) {
     <div className="text-center">
-      <span>Any details found for this Pokémon.</span>
+      <span>{t("noPokemonData")}</span>
       <button onClick={handleBackClick} className="mb-4 text-blue-500">
-        Back
+        {t("back")}
       </button>
     </div>;
   }
@@ -42,9 +44,9 @@ export const Details = () => {
   if (selectedPokemon && selectedPokemon.id !== id) {
     return (
       <div className="text-center">
-        <p>Any details found for this Pokémon.</p>
+        <p>{t("no_pomemon_data")}</p>
         <button onClick={handleGoPokemonsPage} className="mb-4 text-blue-500">
-          Back to previous page
+          {t("back_previous_page")}
         </button>
       </div>
     );
@@ -54,7 +56,7 @@ export const Details = () => {
     return (
       <div className="container mx-auto p-6">
         <button onClick={handleBackClick} className="mb-4 text-blue-500">
-          Back
+          {t("back")}
         </button>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           <div className="card bg-white shadow-md rounded-lg overflow-hidden">
@@ -81,7 +83,7 @@ export const Details = () => {
             {selectedPokemon.resistances &&
               selectedPokemon.resistances.length > 0 && (
                 <div className="mb-4">
-                  <h2 className="effect_label">Resistances</h2>
+                  <h2 className="effect_label">{t("pokemon.resistances")}</h2>
                   <ul className="effect_list">
                     {selectedPokemon.resistances.map((resistance) => (
                       <li key={resistance.type}>
@@ -94,7 +96,7 @@ export const Details = () => {
             {selectedPokemon.weaknesses &&
               selectedPokemon.weaknesses.length > 0 && (
                 <div className="mb-4">
-                  <h2 className="effect_label">Weaknesses</h2>
+                  <h2 className="effect_label">{t("pokemon.weaknesses")}</h2>
                   <ul className="effect_list">
                     {selectedPokemon.weaknesses.map((weakness) => (
                       <li key={weakness.type}>

@@ -1,11 +1,29 @@
 {
   "back": "Back",
-  "id": "ID",
-  "resistances": "Resistances",
-  "weaknesses": "Weaknesses",
-  "attacks": "Attacks",
-  "damage": "Damage",
-  "cost": "Cost",
   "description": "Description",
-  "detailsNotFound": "No details found for this Pokémon"
+  "no_description": "No description found for this Pokémon",
+  "details_not_found": "No details found for this Pokémon",
+  "english": "English",
+  "portuguese": "Portuguese",
+  "loading": "Loading...",
+  "name": "Name",
+  "back_previous_page": "Back to the previous page",
+  "no_pomemon_data": "No data found for this Pokémon",
+  "search_by_name": "Search by name...",
+  "of": "of",
+  "page": "Page",
+  "previous": "Previous",
+  "next": "Next",
+  "pokemon": {
+    "pokemon_cards": "Pokémon Cards",
+    "resistances": "Resistances",
+    "weaknesses": "Weaknesses",
+    "attacks": "Attacks",
+    "converted_energy_cost": "Converted Energy Cost",
+    "damage": "Damage",
+    "cost": "Cost",
+    "energy": "Energy",
+    "type": "Type",
+    "power": "Power"
+  }
 }

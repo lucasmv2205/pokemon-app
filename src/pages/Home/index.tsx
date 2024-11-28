@@ -5,6 +5,8 @@ import { PokemonCard } from "@/components/PokemonCard";
 import { getPokemonCards } from "@/services/getPokemonCards";
 import { usePokemon } from "@/hooks/usePokemon";
 import { SearchInput } from "@/components/SearchInput";
+import { LanguageSelector } from "@/components/LanguageSelector";
+import { useTranslation } from "react-i18next";
 
 export const Home = () => {
   const {
@@ -20,6 +22,7 @@ export const Home = () => {
     pageSize,
   } = usePokemon();
   const [searchParam, setSearchParam] = useState<string>("");
+  const { t } = useTranslation();
 
   const navigate = useNavigate();
 
@@ -69,12 +72,15 @@ export const Home = () => {
 
   return (
     <div className="container mx-auto px-4 py-6">
+      <LanguageSelector />
       <div className="mb-6">
         <SearchInput onSearch={setSearchParam} />
       </div>
-      <h1 className="text-3xl font-bold mb-6 text-center">Pokémon Cards</h1>
+      <h1 className="text-3xl font-bold mb-6 text-center">
+        {t("pokemon.pokemon_cards")}
+      </h1>
       {loading ? (
-        <div className="text-center">Loading...</div>
+        <div className="text-center">{t("loading")}</div>
       ) : (
         <div>
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
@@ -93,17 +99,17 @@ export const Home = () => {
               disabled={currentPage === 1}
               className="px-4 py-2 bg-blue-500 text-white rounded disabled:bg-gray-300"
             >
-              Previous
+              {t("previous")}
             </button>
             <span>
-              Page {currentPage} of {totalPages}
+              {t("page")} {currentPage} {t("of")} {totalPages}
             </span>
             <button
               onClick={handleNextPage}
               disabled={currentPage === totalPages}
               className="px-4 py-2 bg-blue-500 text-white rounded disabled:bg-gray-300"
             >
-              Next
+              {t("next")}
             </button>
           </div>
         </div>
