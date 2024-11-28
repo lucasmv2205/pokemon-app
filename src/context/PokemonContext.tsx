@@ -1,3 +1,4 @@
+import useLocalStorage from "@/hooks/useLocalStorage";
 import { PokemonType } from "@/types";
 import { createContext, useState } from "react";
 
@@ -35,9 +36,8 @@ interface PokemonProviderProps {
 
 const PokemonProvider = ({ children }: PokemonProviderProps) => {
   const [pokemons, setPokemons] = useState<PokemonType[]>([]);
-  const [selectedPokemon, setSelectedPokemon] = useState<PokemonType | null>(
-    null
-  );
+  const [selectedPokemon, setSelectedPokemon] =
+    useLocalStorage<PokemonType | null>("selectedPokemon", null);
   const [loading, setLoading] = useState<boolean>(true);
   const [currentPage, setCurrentPage] = useState<number>(1);
   const [totalPages, setTotalPages] = useState<number>(1);
