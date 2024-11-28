@@ -41,6 +41,10 @@ export const ModalAttack = ({ attack, handleCloseModal }: ModalAttackProps) => {
         <p className="mb-2">
           <strong>Cost:</strong> {attack.cost ? attack.cost.join(", ") : "N/A"}
         </p>
+        <p className="mb-2">
+          <strong>Converted Energy Cost:</strong>{" "}
+          {attack.convertedEnergyCost || "N/A"}
+        </p>
         <p>
           <strong>Description:</strong>{" "}
           {attack.text || "No description available."}
