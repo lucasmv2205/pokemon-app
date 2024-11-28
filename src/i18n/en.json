@@ -1,0 +1,11 @@
+{
+  "back": "Back",
+  "id": "ID",
+  "resistances": "Resistances",
+  "weaknesses": "Weaknesses",
+  "attacks": "Attacks",
+  "damage": "Damage",
+  "cost": "Cost",
+  "description": "Description",
+  "detailsNotFound": "No details found for this Pokémon"
+}

@@ -1,0 +1,11 @@
+{
+  "back": "Voltar",
+  "id": "ID",
+  "resistances": "Resistências",
+  "weaknesses": "Fraquezas",
+  "attacks": "Ataques",
+  "damage": "Dano",
+  "cost": "Custo",
+  "description": "Descrição",
+  "detailsNotFound": "Nenhum detalhe encontrado para este Pokémon"
+}
