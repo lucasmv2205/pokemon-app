@@ -3,6 +3,13 @@
 This is a React application built with **Vite**. The app displays a list of Pokémon cards with features like search, pagination, and language switching.
 
 
+### Desktop
+https://github.com/user-attachments/assets/1071991e-1109-475e-97ec-44100c78275e
+
+### Mobile
+https://github.com/user-attachments/assets/18c7b444-603e-430b-b334-9f5c18bd9977
+
+
 # ⚙️ Required Node Version
 This project requires Node.js v18.x.x to run. To ensure compatibility, please use the following Node version, as the project was developed using
 
