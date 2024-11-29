@@ -90,6 +90,7 @@ The project supports unit tests with Jest and end-to-end (E2E) tests with Cypres
    ```
    npm run cy:run
    ```
+https://github.com/user-attachments/assets/792236d6-3c06-42bb-8fa6-f6d661e09400
 
 # 🌍 Language Support
 - The app supports English (en) and Portuguese (pt).
